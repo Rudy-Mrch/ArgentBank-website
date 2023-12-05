@@ -17,12 +17,12 @@ const Banner = () => {
       </Link>
 
       {!isSignoutPage ? (
-        <Link to="/signup" className="main-nav-item">
+        <Link to="/signIn" className="main-nav-item">
           <i className="fa fa-user-circle"></i>
           Sign In
         </Link>
       ) : (
-        <Link to="/signup" className="main-nav-item">
+        <Link to="/signIn" className="main-nav-item">
           <i className="fa fa-user-circle"></i>
           {/* {user} */}
           <i className="fa fa-sign-out"></i>
