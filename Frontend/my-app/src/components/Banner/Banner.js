@@ -22,7 +22,7 @@ const Banner = () => {
           Sign In
         </Link>
       ) : (
-        <Link to="/signIn" className="main-nav-item">
+        <Link to="/" className="main-nav-item">
           <i className="fa fa-user-circle"></i>
           {/* {user} */}
           <i className="fa fa-sign-out"></i>
