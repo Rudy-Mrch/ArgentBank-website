@@ -7,7 +7,7 @@ import "./User.css";
 
 const User = () => {
   return (
-    <div>
+    <>
       <Banner />
      <main className="main bg-dark">
         <Welcome />
@@ -16,7 +16,7 @@ const User = () => {
         <Account />
         </main>
       <Footer />
-    </div>
+    </>
   );
 };
 

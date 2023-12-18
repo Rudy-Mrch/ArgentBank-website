@@ -6,7 +6,7 @@ import './SignIn.css'
 
 const SignUp = () => {
   return (
-    <div>
+    <>
       <Banner />
    
       <LoginForm
@@ -19,7 +19,7 @@ const SignUp = () => {
         }}
       />
       <Footer />
-    </div>
+    </>
   );
 };
 

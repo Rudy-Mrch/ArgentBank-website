@@ -5,9 +5,9 @@ import Rooter from './components/Rooter/Rooter';
 
 function App() {
   return (
-    <div>
+    <>
 <Rooter />
-    </div>
+    </>
   );
 }
 
