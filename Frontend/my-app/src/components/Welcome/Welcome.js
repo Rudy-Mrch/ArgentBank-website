@@ -1,48 +1,54 @@
-import React, { useState } from 'react';
-import './Welcome.css'
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  startEditing,
+  setName,
+  stopEditing,
+} from '../../Redux/slice'; 
+
+import './Welcome.css';
+
 const Welcome = () => {
-  const [name, setName] = useState('John');
-  const [isEditing, setIsEditing] = useState(false);
+  const { name, isEditing } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
 
   const handleEditClick = () => {
-    setIsEditing(true);
+    dispatch(startEditing());
   };
 
   const handleNameChange = (event) => {
-    setName(event.target.value);
+    dispatch(setName(event.target.value));
   };
 
   const handleSaveClick = () => {
-    setIsEditing(false);
+    dispatch(stopEditing());
   };
 
   return (
-    
-      <div className='header'>
-        <h1>
-          Welcome back
-          <br />
-          {isEditing ? (
-            <input
-              type='text'
-              value={name}
-              onChange={handleNameChange}
-            />
-          ) : (
-            <span>{name}</span>
-          )}
-        </h1>
+    <div className='header'>
+      <h1>
+        Welcome back
+        <br />
         {isEditing ? (
-          <button className='edit-button' onClick={handleSaveClick}>
-            Save
-          </button>
+          <input
+            type='text'
+            value={name}
+            onChange={handleNameChange}
+          />
         ) : (
-          <button className='edit-button' onClick={handleEditClick}>
-            Edit Name
-          </button>
+          <span>{name}</span>
         )}
-      </div>
-     
+      </h1>
+      {isEditing ? (
+        <button className='edit-button' onClick={handleSaveClick}>
+          Save
+        </button>
+      ) : (
+        <button className='edit-button' onClick={handleEditClick}>
+          Edit Name
+        </button>
+      )}
+    </div>
   );
 };
 

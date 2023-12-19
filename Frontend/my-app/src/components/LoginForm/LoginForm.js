@@ -1,29 +1,41 @@
-import React from 'react';
-import './LoginForm.css'
+import React, { useState } from 'react';
+import './LoginForm.css';
 
-const LoginForm = ({ logo, title, usernameLabel, passwordLabel, rememberMeLabel, signInLabel, onSubmit }) => {
+const LoginForm = ({ logo, title, usernameLabel, passwordLabel, signInLabel, onSubmit, initialUsername, initialPassword }) => {
+  const [username, setUsername] = useState(initialUsername || '');
+  const [password, setPassword] = useState(initialPassword || '');
+
+  const handleUsernameChange = (event) => {
+    setUsername(event.target.value);
+  };
+
+  const handlePasswordChange = (event) => {
+    setPassword(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    onSubmit({ email: username, password: password });
+  };
+
   return (
-     <main className='main bg-dark'>
-     <section className='sign-in-content'>
+    <main className='main bg-dark'>
+      <section className='sign-in-content'>
         {logo && <i className={logo}></i>}
         {title && <h1>{title}</h1>}
-        <form onSubmit={onSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="input-wrapper">
-            <label htmlFor="username">{usernameLabel || 'Username'}</label>
-            <input type="text" id="username" />
+            <label htmlFor="username">{usernameLabel || 'Email'}</label>
+            <input type="text" id="username" value={username} onChange={handleUsernameChange} />
           </div>
           <div className="input-wrapper">
             <label htmlFor="password">{passwordLabel || 'Password'}</label>
-            <input type="password" id="password" />
-          </div>
-          <div className="input-remember">
-            <input type="checkbox" id="remember-me" />
-            <label htmlFor="remember-me">{rememberMeLabel || 'Remember me'}</label>
+            <input type="password" id="password" value={password} onChange={handlePasswordChange} />
           </div>
           <button type="submit" className="sign-in-button">{signInLabel || 'Sign In'}</button>
         </form>
       </section>
-      </main>
+    </main>
   );
 };
 
