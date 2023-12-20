@@ -4,6 +4,7 @@ import "./Banner.css";
 
 const Banner = () => {
   const isSignoutPage = window.location.pathname === '/user';
+  const itemRemove = sessionStorage.removeItem("token")
 
   return (
     <nav className="main-nav">
