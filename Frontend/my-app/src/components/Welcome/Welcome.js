@@ -1,12 +1,8 @@
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import {
-  startEditing,
-  setName,
-  stopEditing,
-} from '../../Redux/slice'; 
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { startEditing, setName, stopEditing } from "../../Redux/slice";
 
-import './Welcome.css';
+import "./Welcome.css";
 
 const Welcome = () => {
   const { name, isEditing } = useSelector((state) => state.user);
@@ -24,27 +20,62 @@ const Welcome = () => {
     dispatch(stopEditing());
   };
 
+  const handleCancelClick = () => {
+    dispatch(stopEditing());
+  };
+
   return (
-    <div className='header'>
+    <div className="header">
       <h1>
         Welcome back
         <br />
         {isEditing ? (
-          <input
-            type='text'
-            value={name}
-            onChange={handleNameChange}
-          />
+          <div className="editUser">
+            <h3 className="userTitle">Edit user info </h3>
+            <h4>
+              <span>User name: </span>
+              <input 
+              type="text"
+               value={name}
+              onChange={handleNameChange} 
+              />
+            </h4>
+            <h4>
+              <span>First name: </span>
+              <input 
+              type="text" 
+              value={""} 
+              onChange={""} 
+              readOnly
+              className="read-only-input"
+              />
+            </h4>
+            <h4>
+              <span>Last name: </span>
+              <input 
+              type="text" 
+              value={""} 
+              onChange={""} 
+              readOnly
+              className="read-only-input"
+              />
+            </h4>
+          </div>
         ) : (
           <span>{name}</span>
         )}
       </h1>
       {isEditing ? (
-        <button className='edit-button' onClick={handleSaveClick}>
-          Save
-        </button>
+        <div>
+          <button className="edit-button" onClick={handleSaveClick}>
+            Save
+          </button>
+          <button className="edit-button" onClick={handleCancelClick}>
+            Cancel
+          </button>
+        </div>
       ) : (
-        <button className='edit-button' onClick={handleEditClick}>
+        <button className="edit-button" onClick={handleEditClick}>
           Edit Name
         </button>
       )}
