@@ -4,7 +4,10 @@ import "./Banner.css";
 
 const Banner = () => {
   const isSignoutPage = window.location.pathname === '/user';
-  const itemRemove = sessionStorage.removeItem("token")
+  const handleSignOut = () => {
+    sessionStorage.removeItem("token");
+    window.location.href = "/signIn";
+  };
 
   return (
     <nav className="main-nav">
@@ -23,12 +26,12 @@ const Banner = () => {
           Sign In
         </Link>
       ) : (
-        <Link to="/" className="main-nav-item">
+        <div className="main-nav-item" onClick={handleSignOut}>
           <i className="fa fa-user-circle"></i>
           {/* {user} */}
           <i className="fa fa-sign-out"></i>
           Sign Out
-        </Link>
+        </div>
       )}
     </nav>
   );
