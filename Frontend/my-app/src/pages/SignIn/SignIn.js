@@ -1,9 +1,8 @@
-
+// SignIn.js
 import React from "react";
 import { useDispatch } from 'react-redux';
 import LoginForm from "../../components/LoginForm/LoginForm";
-import { loginUserAsync } from "../../Redux/slice";
-
+import { loginUserAsync } from "../../Redux/authSlice"; 
 const SignIn = () => {
   const dispatch = useDispatch();
 

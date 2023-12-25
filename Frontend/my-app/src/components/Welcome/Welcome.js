@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { startEditing, setName, stopEditing } from "../../Redux/slice";
+import { startEditing, setUserName, stopEditing } from "../../Redux/slice"; 
 
 import "./Welcome.css";
 
 const Welcome = () => {
-  const { name, isEditing } = useSelector((state) => state.user);
+  const { userName, isEditing } = useSelector((state) => state.user); 
   const dispatch = useDispatch();
 
   const handleEditClick = () => {
@@ -13,7 +13,7 @@ const Welcome = () => {
   };
 
   const handleNameChange = (event) => {
-    dispatch(setName(event.target.value));
+    dispatch(setUserName(event.target.value)); 
   };
 
   const handleSaveClick = () => {
@@ -34,35 +34,35 @@ const Welcome = () => {
             <h3 className="userTitle">Edit user info </h3>
             <h4>
               <span>User name: </span>
-              <input 
-              type="text"
-               value={name}
-              onChange={handleNameChange} 
+              <input
+                type="text"
+                value={userName} 
+                onChange={handleNameChange}
               />
             </h4>
             <h4>
               <span>First name: </span>
-              <input 
-              type="text" 
-              value={""} 
-              onChange={""} 
-              readOnly
-              className="read-only-input"
+              <input
+                type="text"
+                value={""}
+                onChange={""}
+                readOnly
+                className="read-only-input"
               />
             </h4>
             <h4>
               <span>Last name: </span>
-              <input 
-              type="text" 
-              value={""} 
-              onChange={""} 
-              readOnly
-              className="read-only-input"
+              <input
+                type="text"
+                value={""}
+                onChange={""}
+                readOnly
+                className="read-only-input"
               />
             </h4>
           </div>
         ) : (
-          <span>{name}</span>
+          <span>{userName}</span> 
         )}
       </h1>
       {isEditing ? (
