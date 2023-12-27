@@ -1,19 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { startEditing, setUserName, stopEditing } from "../../Redux/slice"; 
+import {fetchUserProfileAsync, startEditing, setUserName, stopEditing } from "../../Redux/slice";
 
 import "./Welcome.css";
 
 const Welcome = () => {
-  const { userName, isEditing } = useSelector((state) => state.user); 
+  const { userName, isEditing, lastName, firstName } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUserProfileAsync());
+  }, [dispatch]);
 
   const handleEditClick = () => {
     dispatch(startEditing());
   };
 
   const handleNameChange = (event) => {
-    dispatch(setUserName(event.target.value)); 
+    dispatch(setUserName(event.target.value));
   };
 
   const handleSaveClick = () => {
@@ -36,7 +42,7 @@ const Welcome = () => {
               <span>User name: </span>
               <input
                 type="text"
-                value={userName} 
+                value={userName || ""}
                 onChange={handleNameChange}
               />
             </h4>
@@ -44,8 +50,7 @@ const Welcome = () => {
               <span>First name: </span>
               <input
                 type="text"
-                value={""}
-                onChange={""}
+                value={firstName || ""}
                 readOnly
                 className="read-only-input"
               />
@@ -54,15 +59,14 @@ const Welcome = () => {
               <span>Last name: </span>
               <input
                 type="text"
-                value={""}
-                onChange={""}
+                value={lastName || ""}
                 readOnly
                 className="read-only-input"
               />
             </h4>
           </div>
         ) : (
-          <span>{userName}</span> 
+          <span>{userName}</span>
         )}
       </h1>
       {isEditing ? (
