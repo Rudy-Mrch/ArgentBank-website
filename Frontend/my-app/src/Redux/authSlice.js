@@ -16,8 +16,10 @@ export const loginUserAsync = (loginData) => async (dispatch) => {
       sessionStorage.setItem("token", jwtToken);
 
       dispatch(setToken(jwtToken));
+      dispatch(setUserName(loginData.email));
     } else {
       console.error("Login failed");
+      
     }
   } catch (error) {
     console.error("Error during login:", error);
@@ -28,13 +30,17 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     token: null,
+    userName: null,
   },
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload;
     },
+    setUserName: (state, action) => {
+      state.userName = action.payload;
+    },
   },
 });
 
-export const { setToken } = authSlice.actions;
+export const { setToken, setUserName } = authSlice.actions;
 export default authSlice.reducer;

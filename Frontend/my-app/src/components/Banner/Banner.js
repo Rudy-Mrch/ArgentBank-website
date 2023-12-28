@@ -1,9 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux"; 
 import "./Banner.css";
 
 const Banner = () => {
   const isSignoutPage = window.location.pathname === '/user';
+
+
+  const userName = useSelector((state) => state.user.userName);
+
   const handleSignOut = () => {
     sessionStorage.removeItem("token");
     window.location.href = "/signIn";
@@ -28,7 +33,7 @@ const Banner = () => {
       ) : (
         <div className="main-nav-item" onClick={handleSignOut}>
           <i className="fa fa-user-circle"></i>
-          {/* {user} */}
+          {userName} 
           <i className="fa fa-sign-out"></i>
           Sign Out
         </div>

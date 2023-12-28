@@ -61,5 +61,33 @@ export const fetchUserProfileAsync = () => async (dispatch) => {
   }
 };
 
+export const updateUserProfileAsync = (newUserName) => async (dispatch) => {
+  try {
+    const token = sessionStorage.getItem("token");
+
+    if (!token) {
+      console.error("Token not found");
+      return;
+    }
+
+    const response = await fetch("http://localhost:3001/api/v1/user/profile", {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ userName: newUserName }),
+    });
+
+    if (response.ok) {
+      dispatch(fetchUserProfileAsync());
+    } else {
+      console.error("Failed to update user profile");
+    }
+  } catch (error) {
+    console.error("Error during user profile update:", error);
+  }
+};
+
 export const { startEditing, setUserName, setLastName, setFirstName, stopEditing } = userSlice.actions;
 export default userSlice.reducer;

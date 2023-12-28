@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import {fetchUserProfileAsync, startEditing, setUserName, stopEditing } from "../../Redux/slice";
+import { fetchUserProfileAsync, startEditing, setUserName, stopEditing } from "../../Redux/slice";
+import { updateUserProfileAsync } from "../../Redux/slice";  
 
 import "./Welcome.css";
 
@@ -23,6 +24,7 @@ const Welcome = () => {
   };
 
   const handleSaveClick = () => {
+    dispatch(updateUserProfileAsync(userName));  
     dispatch(stopEditing());
   };
 
