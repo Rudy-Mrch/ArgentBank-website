@@ -31,12 +31,19 @@ const Banner = () => {
           Sign In
         </Link>
       ) : (
-        <div className="main-nav-item" onClick={handleSignOut}>
-          <i className="fa fa-user-circle"></i>
+        <>
+        <div className="containerLink">  
+        <div className="userInfo">
+        <i className="fa fa-user-circle"></i>
           {userName} 
+          </div>
+        <div className="main-nav-item" onClick={handleSignOut}>
+      
           <i className="fa fa-sign-out"></i>
           Sign Out
         </div>
+        </div>
+        </>
       )}
     </nav>
   );

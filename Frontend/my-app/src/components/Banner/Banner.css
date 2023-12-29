@@ -40,3 +40,12 @@
   width: 200px;
 }
 
+.containerLink{
+  display: flex;
+  align-items: center;
+}
+
+.userInfo{
+  font-weight: bold;
+  margin-right: -0.8em;
+}

@@ -1,14 +1,18 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchUserProfileAsync, startEditing, setUserName, stopEditing } from "../../Redux/slice";
-import { updateUserProfileAsync } from "../../Redux/slice";  
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import {
+  fetchUserProfileAsync,
+  startEditing,
+  setUserName,
+  stopEditing,
+  updateUserProfileAsync,
+} from '../../Redux/slice';
 
-import "./Welcome.css";
+import './Welcome.css';
 
 const Welcome = () => {
-  const { userName, isEditing, lastName, firstName } = useSelector(
-    (state) => state.user
-  );
+  const { userName, isEditing, lastName, firstName, tempUserName } = useSelector(
+    (state) => state.user);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -24,11 +28,12 @@ const Welcome = () => {
   };
 
   const handleSaveClick = () => {
-    dispatch(updateUserProfileAsync(userName));  
+    dispatch(updateUserProfileAsync(userName));
     dispatch(stopEditing());
   };
 
   const handleCancelClick = () => {
+    dispatch(setUserName(tempUserName));
     dispatch(stopEditing());
   };
 
