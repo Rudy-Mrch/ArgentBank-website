@@ -73,7 +73,7 @@ const Welcome = () => {
             </h4>
           </div>
         ) : (
-          <span>{userName}</span>
+          <span>{firstName + " " + lastName }</span>
         )}
       </h1>
       {isEditing ? (
