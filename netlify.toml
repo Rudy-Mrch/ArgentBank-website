@@ -1,5 +1,4 @@
 [build]
-  base = "Backend"
-  command = "npm start"
+  base = "Frontend/my-app"
+  command = "npm install && npm run build"
   publish = "Frontend/my-app/build"
-  functions = "netlify/functions"
