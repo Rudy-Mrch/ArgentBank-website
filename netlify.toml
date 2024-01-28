@@ -3,5 +3,5 @@
   command = "npm install && npm run build"
   publish = "Frontend/my-app/build"
 
-[[functions]]
+[functions]
   directory = "Backend/functions"
