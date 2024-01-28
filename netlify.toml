@@ -1,4 +1,7 @@
 [build]
   base = "Frontend/my-app"
   command = "npm install && npm run build"
-  publish = "build"
+  publish = "Frontend/my-app/build"
+
+[[functions]]
+  directory = "Backend/functions"
